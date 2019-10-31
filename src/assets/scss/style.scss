@@ -1,0 +1,380 @@
+
+@import 'reset';
+@import 'veriables';
+@import 'mixins.scss';
+
+body, html {
+    font-size: $bodyFontSize;
+    font-family: $bodyFont;
+
+    .success {
+        &-toaster {
+            background-color: $success;
+            @include border-style(solid, 1px, $success-dark);
+            @include padding(8px, 16px, 8px, 16px);
+            font-size: 18px;
+            color: $light;
+            @include border-radius($borderRadius);
+        }   
+    }
+
+    .danger {
+        &-toaster {
+            background-color: $danger;
+            @include border-style(solid, 1px, $danger-dark);
+            @include padding(8px, 16px, 8px, 16px);
+            font-size: 18px;
+            color: $light;
+            @include border-radius($borderRadius);
+        }   
+    }
+
+    .no-records {
+        text-align: center;
+        width: 100%;
+    }
+
+    input[type=text] {
+        @include border-style($borderStyle, $borderSize, $borderColor);
+        font-size: $bodyFontSize;
+        @include padding(8px, 16px, 8px, 16px); 
+        @include border-radius($borderRadius);
+        width: 89%;
+    }
+
+    button[type=submit]{
+        background-color: black;
+        color: #fff;
+        font-size: 16px;
+        @include padding(8px, 16px, 8px, 16px);
+        @include margin(8px, 0px, 8px, 0px);
+        @include border-radius(45px);
+        cursor: pointer;       
+        &:hover {
+            background-color: $linkHover;
+        }
+
+    }
+
+    /* LinkList and LinkListItem components begin */
+    .link {
+        width: 300px;
+        margin: auto;
+
+        select {
+            width: 75%;
+            @include border-style(solid, 1px, $gray);
+            @include margin(8px, 16px, 8px, 10px);
+            height: 32px;
+        }
+    
+        &-item {
+
+            &:nth-child(1) {
+                &:hover {
+                    color: $linkHover;
+                }
+            }
+
+            display: flex;
+            @include margin(12px, 0, 12px, 0);
+            @include padding-all(8px);
+            cursor: pointer;
+            @include border-style(solid, 1px,$light);
+            transition: 400ms linear;
+
+            &:hover {
+                @include border-style(solid, 1px, $gray);
+                @include border-radius($borderRadius);
+                -webkit-box-shadow: 5px 6px 18px -15px rgba(0,0,0,0.75);
+                -moz-box-shadow: 5px 6px 18px -15px rgba(0,0,0,0.75);
+                box-shadow: 5px 6px 18px -15px rgba(0,0,0,0.75);
+                transition: 400ms linear;
+
+                img.delete {
+                    display: block;
+                }
+            }
+
+            a { 
+                text-decoration: none;
+                color: black;
+                transition: 200ms linear;
+                img {
+                    width: 12px;
+                    height: 12px;
+                    position: relative;
+                    @include padding(0px, 5px, 0px, 0px);
+                }
+
+                &:hover {
+                    transition: 200ms linear;
+                    color: $linkHover;
+                }
+            }
+            a.voteUp {
+                @include margin(12px, 0px, 0px, 0px);
+                font-size: 10px;
+                img {
+                    top: 5px;
+                    @include rotate(90deg);
+                }
+            }
+            a.voteDown {
+                @include margin(12px, 0px, 0px, 0px);
+                font-size: 11px;
+                img {
+                    @include rotate(270deg);
+                }
+            }
+            
+            &-delete {
+
+                img {
+                    width: 25px;
+                    height: 25px;
+                    display: none;
+                }
+                position: absolute;
+                right: 50%;
+                margin-top: -20px;
+                margin-right: -160px;
+
+
+
+
+            }
+    
+            &-add-icon {
+                @include padding(0px, 14px, 4px, 14px); 
+                @include border-style(solid, 1px, $gray);
+                @include border-radius($borderRadius);
+                text-align: center;
+                font-size: 48px;
+                font-weight: 600;
+                background-color: $scoreBgColor;
+            }
+    
+            &-add-text {
+                @include padding(20px, 0px, 0px, 0px); 
+                text-align: center;
+                font-size: 21px;
+                font-weight: 600;
+                width: 100%;
+            }
+    
+            &-vote {
+                @include padding(4px, 10px, 8px, 10px); 
+                @include border-style(solid, 1px, $gray);
+                @include border-radius($borderRadius);
+                background-color: $scoreBgColor;
+                text-align: center;
+    
+                .score {
+                    font-size: 32px;
+                    font-weight: 600;
+                    text-align: center;
+                }
+            }
+    
+            &-detail {
+                @include padding(3px, 10px, 3px, 10px); 
+                width: 100%;
+                
+                .title {
+                    font-weight: 600;
+                }
+    
+                .url {
+                    font-size: 11px;
+                }
+    
+                .buttons {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+    /* LinkList and LinkListItem components end */
+
+
+    /* Pagination component begin */
+    .pagination {
+        ul {
+            list-style: none;
+            display: flex;
+            @include padding-all(0);
+            justify-content: center;
+            li {
+                display: inline-block;
+                a {
+                    text-decoration: none;
+                    @include padding(4px, 8px, 4px, 8px);
+                    color: black;
+                    transition: 400ms linear;
+
+                    &:hover {
+                        transition: 400ms linear;
+                        color: $linkHover;
+                    }
+                }
+
+                .selected {
+                    color: $linkHover;
+                    @include border-style(solid, 1px, $linkHover);
+                }
+            }
+        }
+    }
+    /* Pagination component end */
+
+
+    /* Modal compoment begin */
+    .modal-bg {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0, .7);
+        display: block;
+
+        .modal {
+            width: 450px;
+            background-color: $light;
+            @include border-style(solid, 1px, $gray);
+
+            position: relative;
+            left: 50%;
+            margin-left: -225px;
+            top: 150px;
+    
+            &-title {
+                background-color: $gray;
+                @include padding-all(8px);
+                display: flex;
+                justify-content: space-between;
+                font-weight: 900;
+
+                a {
+                    color: black;
+                    text-decoration: none;
+                    transition: 200ms linear;
+
+                    &:hover {
+                        color: $linkHover;
+                        transition: 200ms linear;
+                    }
+
+                }
+            }
+
+            &-content {
+                @include margin(32px, 16px, 16px, 16px);
+                .question {
+                    color: black;
+                    text-align: center;
+                    
+                }
+
+                .effectedName {
+                    font-size: 28px;
+                    font-weight: 600;
+                    text-align: center;
+                    @include margin(4px, 0px, 0px, 0px);
+                }
+
+                .action {
+                    display: flex;
+                    justify-content: space-between;
+                    @include margin(24px, 68px, 0px, 68px);
+                    
+                    a {
+                        display: block;
+                        background-color: black;
+                        color: $light;
+                        font-size: 16px;
+                        @include padding(8px, 0px, 8px, 0px);
+                        width: 120px;
+                        text-align: center;
+                        text-decoration: none;
+                        @include border-radius(45px);
+                        transition: 200ms linear;
+                        
+                        &:hover {
+                            background-color: $linkHover;
+                            transition: 200ms linear;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    /* Modal compoment end */
+
+
+    /* CreateLink compoment begin */
+    .create-link {
+        width: 300px;
+        margin: auto;
+    
+        .row {
+            @include padding(8px, 0px, 8px, 0px); 
+            width: 100%;
+
+            .invalid-feedback {
+                color: $danger;
+            }
+    
+            label {
+                line-height: 25px;
+            }
+
+            a.backtoList {
+                font-size: 11px;
+                color: black;
+                text-decoration: none;
+                &:hover {
+                    color: $linkHover;
+                }
+                img {
+                    width: 10px;
+                    height: 10px;
+                    position: relative;
+                    @include padding(0px, 5px, 0px, 0px);
+                }
+            }
+        }
+
+        .right {
+            text-align: right;
+        }
+    }
+
+    /* CreateLink compoment end */
+
+
+    /* Header compoment begin */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            @include margin(16px, 70px, 16px, 70px);
+            border-bottom: solid 1px $gray;
+            padding-bottom: 16px;
+
+            font-size: 18px;
+            .bold {
+                font-weight: 100;
+            }
+            .light {
+                font-weight: 500;
+            }
+            .medium {
+                font-weight: bold;
+            }
+        }
+    /* Header compoment end */
+}
